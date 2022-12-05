@@ -7,10 +7,12 @@ class Program
         var totalScore = 0;
         foreach (var round in inputs)
         {
-            switch (round[0]) 
+            var opponent = round[0];
+            var yourChoice = round[2];
+            switch (opponent) 
             {
                 case 'A':
-                    switch (round[2])
+                    switch (yourChoice)
                     {
                         case 'X':
                             totalScore += Draw('X');
@@ -24,7 +26,7 @@ class Program
                     }
                     break;
                 case 'B':
-                    switch (round[2])
+                    switch (yourChoice)
                     {
                         case 'X':
                             totalScore += 1;
@@ -38,7 +40,7 @@ class Program
                     }
                     break;
                 default:
-                    switch (round[2])
+                    switch (yourChoice)
                     {
                         case 'X':
                             totalScore += Win('X');

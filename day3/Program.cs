@@ -7,6 +7,7 @@
             var inputs = File.ReadAllLines("inputs.txt");
             var prioritySum = 0;
 
+            // Part 1
             foreach (var rucksack in inputs)
             {
                 var set1 = new HashSet<char>();
@@ -40,9 +41,43 @@
                         set2.Add(compartment2[i]);
                     }
                 }
-
-                Console.WriteLine(prioritySum);
             }
+            Console.WriteLine(prioritySum);
+
+            // Part 2
+            prioritySum = 0;
+            var dictionary = new Dictionary<char, int>();
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                if (i % 3 == 0) 
+                    dictionary.Clear();
+
+                var lineSet = new HashSet<char>();
+                foreach (var compartment in inputs[i])
+                {
+                    if (!lineSet.Contains(compartment))
+                    {
+                        lineSet.Add(compartment);
+                        if (dictionary.ContainsKey(compartment))
+                        {
+                            dictionary[compartment]++;
+
+                            // 'Win Condition'
+                            // If we have hit 3 then the value was on all 3 lines
+                            if (dictionary[compartment] == 3) 
+                            {
+                                prioritySum += CalculatePriority(compartment);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            dictionary.Add(compartment, 1);
+                        }
+                    }
+                }
+            }
+            Console.WriteLine(prioritySum);
         }
 
         static int CalculatePriority(int priority)

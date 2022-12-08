@@ -6,6 +6,7 @@
         {
             var inputs = File.ReadAllLines("inputs.txt");
             var fullyContainedSum = 0;
+            var overlapSum = 0;
 
             foreach (var pair in inputs)
             {
@@ -25,9 +26,16 @@
                     // full contains
                     fullyContainedSum++;
                 }
+
+                if ((elf1End >= elf2Start && elf1Start <= elf2End) || 
+                    (elf2End >= elf1Start && elf2Start <= elf1End))
+                {
+                    overlapSum++;
+                }
             }
 
             Console.WriteLine(fullyContainedSum);
+            Console.WriteLine(overlapSum);
         }
     }
 }

@@ -34,7 +34,10 @@
                     dict.Add(input[rightHand], rightHand);
                 }
 
-                if (dict.Count() == 4)
+                // PART 1
+                // if (dict.Count() == 4)
+                // PART 2
+                if (dict.Count() == 14)
                 {
                     // + 1 for 0 index
                     result = rightHand + 1;
